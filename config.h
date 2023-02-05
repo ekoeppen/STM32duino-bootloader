@@ -407,6 +407,22 @@
     #define LED_ON_STATE        0
 
 
+#elif defined TARGET_OLIMEXINO_STM32
+	
+	#warning "Target Olimexino STM32"
+
+    #define HAS_MAPLE_HARDWARE 1
+
+	#define LED_BANK         GPIOA
+	#define LED_PIN              1
+	#define LED_ON_STATE	 1
+
+	#define BUTTON_BANK      GPIOC
+	#define BUTTON_PIN           9
+	#define BUTTON_PRESSED_STATE 1	
+
+	#define USB_DISC_BANK       GPIOC
+	#define USB_DISC_PIN           12
 #else
     #error "No config for this target"
 #endif
