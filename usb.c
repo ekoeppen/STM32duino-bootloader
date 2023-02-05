@@ -36,6 +36,7 @@
 
 extern u8 u8_usbConfigDescriptorDFU[];
 extern u8 u8_usbFunctionalDescriptor[];
+int wTransferSize;
 
 void setupUSB (void) {
 
