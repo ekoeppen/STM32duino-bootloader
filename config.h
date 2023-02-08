@@ -423,6 +423,8 @@
 
 	#define USB_DISC_BANK       GPIOC
 	#define USB_DISC_PIN           12
+#elif defined TARGET_GENERIC
+    #warning "Generic target"
 #else
     #error "No config for this target"
 #endif

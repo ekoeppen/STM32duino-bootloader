@@ -141,6 +141,7 @@ cc3d: begin clean gccversion build_cc3d sizeafter finished  copy_cc3d end
 generic-pc13-fastboot: begin clean gccversion build_generic-pc13-fastboot sizeafter finished  copy_generic-pc13-fastboot end
 smart-v2: begin clean gccversion build_smart-v2 sizeafter finished  copy_smart-v2 end
 olimexino-stm32: begin gccversion build_olimexino-stm32 sizeafter finished  copy_olimexino-stm32 end
+generic: begin gccversion build_generic sizeafter finished  copy_generic end
 
 build: elf bin lss sym
 
@@ -461,6 +462,19 @@ copy_olimexino-stm32:
 	@echo "Copying to binaries folder"
 	@echo
 	cp $(TARGET).bin binaries/olimexino-stm32_boot20.bin
+	@echo
+
+build_generic: TARGETFLAGS= -DTARGET_GENERIC \
+	-DLED_BANK=$(LED_BANK) -DLED_PIN=$(LED_PIN) -DLED_ON_STATE=1 \
+	-DBUTTON_BANK=$(BUTTON_BANK) -DBUTTON_PIN=$(BUTTON_PIN) -DBUTTON_PRESSED_STATE=1
+# Set the linker script
+build_generic: LDFLAGS +=-T$(ST_LIB)/c_only_md_high_density.ld
+build_generic: elf bin lss sym
+copy_generic:
+	@echo
+	@echo "Copying to binaries folder"
+	@echo
+	cp $(TARGET).bin binaries/generic.bin
 	@echo
 
 bin: $(TARGET).bin
